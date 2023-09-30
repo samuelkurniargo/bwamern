@@ -1,0 +1,75 @@
+@import "../../../assets/scss/colorVariables";
+
+$stepperMainColor: $gray-200;
+$size: 50px;
+
+ol.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        color: $white;
+
+        &:after {
+            position: absolute;
+            content: "";
+            z-index: 2;
+            width: $size;
+            height: $size;
+            border-radius: $size;
+            background-image: url('data:image/svg+xml;utf8,<svg width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.99991 13.5999L2.33325 8.93326C2.21122 8.80974 2.06588 8.71167 1.90567 8.64474C1.74545 8.57781 1.57355 8.54334 1.39991 8.54334C1.22628 8.54334 1.05437 8.57781 0.894159 8.64474C0.733945 8.71167 0.58861 8.80974 0.466579 8.93326C0.34306 9.05529 0.244991 9.20063 0.178058 9.36084C0.111126 9.52106 0.0766602 9.69296 0.0766602 9.8666C0.0766602 10.0402 0.111126 10.2121 0.178058 10.3723C0.244991 10.5326 0.34306 10.6779 0.466579 10.7999L6.05325 16.3866C6.57325 16.9066 7.41325 16.9066 7.93325 16.3866L22.0666 2.2666C22.1901 2.14456 22.2882 1.99923 22.3551 1.83902C22.422 1.6788 22.4565 1.5069 22.4565 1.33326C22.4565 1.15963 22.422 0.987722 22.3551 0.827508C22.2882 0.667294 22.1901 0.52196 22.0666 0.399929C21.9445 0.276409 21.7992 0.17834 21.639 0.111408C21.4788 0.0444748 21.3069 0.0100098 21.1332 0.0100098C20.9596 0.0100098 20.7877 0.0444748 20.6275 0.111408C20.4673 0.17834 20.3219 0.276409 20.1999 0.399929L6.99991 13.5999Z" fill="white"/></svg>');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: $teal;
+            transform: scale(1);
+            transition: 0.35s transform ease-in-out;
+        }
+
+        &:not(:last-child) {
+            margin-right: 60px;
+
+            &:before {
+                content: "";
+                z-index: -2;
+                top: 50%;
+                left: 100%;
+                position: absolute;
+                width: 60px;
+                height: 1px;
+                background-color: $stepperMainColor;
+            }
+        }
+
+        &.active {
+            &:after {
+                z-index: -1;
+                background: $white;
+                border: 1px solid $stepperMainColor;
+                transform: scale(1.2);
+            }
+
+            background-color: $stepperMainColor;
+            color: $gray-500;
+
+            &~li {
+                color: $gray-500;
+                background: $stepperMainColor;
+
+                &:after {
+                    content: none;
+                }
+            }
+        }
+    }
+}
